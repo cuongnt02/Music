@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Music</string>
+    <string name="play_button_desc">Play Button</string>
+    <string name="song_title_text">Play Your First Song</string>
+    <string name="basket_image_desc">Basket Image</string>
+    <string name="pause_play_button">Pause/Play Button</string>
+    <string name="now_playing">Now Playing…\n %1$s</string>
+    <string name="song_image_desc">Song Image</string>
+    <string name="lyrics_button">LYRICS</string>
+    <string name="settings_button">SETTINGS</string>
+    <string name="songs_button">SONGS</string>
+</resources>
