@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer = MediaPlayer.create(this@MainActivity, musicViewModel.currentTrack)
         musicViewModel.currentDuration = mediaPlayer.duration
         binding.songTitleText.text = getString(R.string.now_playing, musicViewModel.currentTitle)
+        binding.songImage.setImageResource(musicViewModel.currentImage)
         mediaPlayer.start()
     }
 
@@ -126,13 +127,19 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer.start()
     }
 
+    private fun stopCurrent() {
+        mediaPlayer.stop()
+    }
+
     private fun nextTrack() {
+        stopCurrent()
         if (musicViewModel.nextSong())
             playCurrent()
     }
 
     private fun previousTrack() {
-        if(musicViewModel.previousSong())
-            playCurrent()
+        stopCurrent()
+        musicViewModel.previousSong()
+        playCurrent()
     }
 }

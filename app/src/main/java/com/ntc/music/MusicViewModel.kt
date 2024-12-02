@@ -7,7 +7,8 @@ const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
 class MusicViewModel(val savedStateHandle: SavedStateHandle): ViewModel() {
 
     private val musicList = listOf (
-        Song(title="Rocking around a christmas tree", duration=0, compose="", present="", track=R.raw.rocking_around_the_christmas_tree, lyrics="", image = R.drawable.rocking_around_the_christmas_tree)
+        Song(title="Rocking around a christmas tree", duration=0, compose="Johnny Marks", present="Brenda Lee", track=R.raw.rocking_around_the_christmas_tree, lyrics="", image = R.drawable.rocking_around_the_christmas_tree),
+        Song(title="All I want for christmas is you", duration=0, compose="Mariah Carey, Walter Afanasieff", present="Mariah Carey", track=R.raw.all_i_want_for_christmas_is_you, lyrics="", image=R.drawable.all_i_want_for_christmas_is_you)
     )
 
 
@@ -36,13 +37,12 @@ class MusicViewModel(val savedStateHandle: SavedStateHandle): ViewModel() {
     fun nextSong(): Boolean {
         val currentIncrement = (if (currentIndex + 1 < musicList.size) 1 else 0)
         currentIndex += currentIncrement
-        return currentIncrement > 0
+        return currentIncrement < musicList.size
 
     }
 
-    fun previousSong(): Boolean {
-        val currentDecrement = (if (currentIndex - 1 > 0) 1 else 0)
+    fun previousSong(){
+        val currentDecrement = (if (currentIndex - 1 >= 0) 1 else 0)
         currentIndex -= currentDecrement
-        return currentDecrement > 0
     }
 }
