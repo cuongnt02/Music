@@ -34,11 +34,12 @@ class MusicViewModel(val savedStateHandle: SavedStateHandle): ViewModel() {
     val currentTitle: String
         get() = currentSong.title
 
-    fun nextSong(): Boolean {
+    val currentLyrics: String
+        get() = currentSong.lyrics
+
+    fun nextSong() {
         val currentIncrement = (if (currentIndex + 1 < musicList.size) 1 else 0)
         currentIndex += currentIncrement
-        return currentIncrement < musicList.size
-
     }
 
     fun previousSong(){

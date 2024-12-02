@@ -47,6 +47,18 @@ class MainActivity : AppCompatActivity() {
             previousTrack()
         }
 
+        binding.lyricsButton.setOnClickListener {
+            openLyrics()
+        }
+
+        binding.settingsButton.setOnClickListener {
+            openSetting()
+        }
+
+        binding.songListButton.setOnClickListener {
+            openSongList()
+        }
+
 
     }
 
@@ -133,13 +145,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun nextTrack() {
         stopCurrent()
-        if (musicViewModel.nextSong())
-            playCurrent()
+        musicViewModel.nextSong()
+        playCurrent()
     }
 
     private fun previousTrack() {
         stopCurrent()
         musicViewModel.previousSong()
         playCurrent()
+    }
+
+    private fun openLyrics() {
+        val lyricsContent = musicViewModel.currentLyrics
+        val intentToLyrics = LyricsActivity.newIntent(this@MainActivity, lyricsContent)
+        startActivity(intentToLyrics)
+    }
+
+    private fun openSongList() {
+
+    }
+
+    private fun openSetting() {
+
     }
 }
