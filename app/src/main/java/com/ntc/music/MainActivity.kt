@@ -156,9 +156,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openLyrics() {
-        val lyricsContent = musicViewModel.currentLyrics
+        val lyricsId = musicViewModel.currentLyrics
         val songTitle = musicViewModel.currentTitle
-        val intentToLyrics = LyricsActivity.newIntent(this@MainActivity, songTitle, getString(lyricsContent))
+        val intentToLyrics = LyricsActivity.newIntent(this@MainActivity, songTitle, lyricsId)
         startActivity(intentToLyrics)
     }
 

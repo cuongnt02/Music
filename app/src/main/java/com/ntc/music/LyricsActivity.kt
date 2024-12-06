@@ -21,20 +21,24 @@ class LyricsActivity : AppCompatActivity() {
         binding = ActivityLyricsBinding.inflate(layoutInflater)
 
         val titleText = intent.getStringExtra(EXTRA_TITLE_CONTENT) ?: ""
-        val contentText = intent.getStringExtra(EXTRA_LYRICS_CONTENT) ?: ""
+        val lyricsId = intent.getIntExtra(EXTRA_LYRICS_CONTENT, 0)
 
-        lyricsViewModel.currentLyrics = contentText
+
         lyricsViewModel.currentSongTitle = titleText
+        lyricsViewModel.currentLyrics = lyricsId
 
-        binding.lyricsTitleText.text = lyricsViewModel.currentLyrics
-        binding.lyricsContentText.text = lyricsViewModel.currentSongTitle
+        val lyricsContent = lyricsViewModel.getLyricsContent(this@LyricsActivity)
+
+        binding.lyricsTitleText.text = lyricsViewModel.currentSongTitle
+        binding.lyricsContentText.text = lyricsContent
 
 
         setContentView(binding.root)
     }
 
+
     companion object {
-        fun newIntent(packageContext: Context, songTitle: String, lyricsContent: String): Intent {
+        fun newIntent(packageContext: Context, songTitle: String, lyricsContent: Int): Intent{
             val intent = Intent(packageContext, LyricsActivity::class.java)
             intent.putExtra(EXTRA_LYRICS_CONTENT, lyricsContent)
             intent.putExtra(EXTRA_TITLE_CONTENT, songTitle)
